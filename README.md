@@ -187,7 +187,7 @@ Output >>
 | Parameter              | Description                                              |
 | ---------------------- | -------------------------------------------------------- |
 | `page` (int)           | pilih page dari maximum page. Default : 1                |
-| `:genre-slug` (string) | season slug dapat didapatkan dalam respon **Genre List** |
+| `:genre-slug` (string) | genre slug dapat didapatkan dalam respon **Genre List** |
 
 
 ```js
