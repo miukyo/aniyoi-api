@@ -4,7 +4,6 @@
   "description": "Anime Scrapper",
   "author": "miukyo",
   "main": "src/server.ts",
-  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "start": "ts-node -r dotenv/config ./src/server.ts",
