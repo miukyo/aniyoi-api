@@ -24,7 +24,7 @@
   - [Get Genre List](#get-genre-list)
   - [Get Genre](#get-genre)
   - [Get Season List](#get-season-list)
-  - [Get Seson](#get-seson)
+  - [Get Season](#get-season)
   - [Get Anime Details](#get-anime-details)
   - [Get Streaming URLs](#get-streaming-urls)
 
@@ -71,7 +71,7 @@ Contoh dibawah menggunakan [Fetch API](https://developer.mozilla.org/en-US/docs/
 | `page` (int) | pilih page dari maximum page. Default : 1 |
 
 ```js
-fetch("https://localhost:3001/{source}/recent")
+fetch("localhost:3001/{source}/recent")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -102,7 +102,7 @@ Output >>
 | `page` (int) | pilih page dari maximum page. Default : 1 |
 
 ```js
-fetch("https://localhost:3001/{source}/popular")
+fetch("localhost:3001/{source}/popular")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -133,7 +133,7 @@ Output >>
 | `page` (int)     | pilih page dari maximum page. Default : 1 |
 
 ```js
-fetch("https://localhost:3001/{source}/search")
+fetch("localhost:3001/{source}/search")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -163,7 +163,7 @@ Output >>
 | -         | -           |
 
 ```js
-fetch("https://localhost:3001/{source}/genre")
+fetch("localhost:3001/{source}/genre")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -184,12 +184,14 @@ Output >>
 
 ### Get Genre
 
-| Parameter    | Description                               |
-| ------------ | ----------------------------------------- |
-| `page` (int) | pilih page dari maximum page. Default : 1 |
+| Parameter              | Description                                              |
+| ---------------------- | -------------------------------------------------------- |
+| `page` (int)           | pilih page dari maximum page. Default : 1                |
+| `:genre-slug` (string) | season slug dapat didapatkan dalam respon **Genre List** |
+
 
 ```js
-fetch("https://localhost:3001/{source}/genre/{genre}")
+fetch("localhost:3001/{source}/genre/{genre-slug}")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -219,7 +221,7 @@ Output >>
 | -         | -           |
 
 ```js
-fetch("https://localhost:3001/{source}/season")
+fetch("localhost:3001/{source}/season")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -238,14 +240,15 @@ Output >>
 ]
 ```
 
-### Get Seson
+### Get Season
 
-| Parameter    | Description                               |
-| ------------ | ----------------------------------------- |
-| `page` (int) | pilih page dari maximum page. Default : 1 |
+| Parameter               | Description                                               |
+| ----------------------- | --------------------------------------------------------- |
+| `page` (int)            | pilih page dari maximum page. Default : 1                 |
+| `:season-slug` (string) | season slug dapat didapatkan dalam respon **Season List** |
 
 ```js
-fetch("https://localhost:3001/{source}/season/{season}")
+fetch("localhost:3001/{source}/season/{season-slug}")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -275,7 +278,7 @@ Output >>
 | `:anime-slug` (string) | anime slug dapat didapatkan dalam respon list seperti diatas. |
 
 ```js
-fetch("https://localhost:3001/anime/{anime-slug}")
+fetch("localhost:3001/anime/{anime-slug}")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
@@ -307,7 +310,7 @@ Output >>
 
 
 ```js
-fetch("https://localhost:3001/{source}/anime/{anime-slug}/{anime-episode}")
+fetch("localhost:3001/{source}/anime/{anime-slug}/{anime-episode}")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
