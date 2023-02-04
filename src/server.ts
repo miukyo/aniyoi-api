@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import kuramanime from "./source/kuramanime/kuramanime";
 import nanime from "./source/nanime/nanime";
+import kuronime from "./source/kuronime/kuronime";
+
 
 
 import axios from "axios";
@@ -17,6 +19,8 @@ app.get("/", async (req, res) => {
 });
 app.use("/kuramanime", kuramanime);
 app.use("/nanime", nanime);
+app.use("/kuronime", kuronime);
+
 
 
 app.listen(port, () => {
