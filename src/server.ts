@@ -13,6 +13,7 @@ export const app = express();
 axios.defaults.validateStatus = () => true;
 axios.defaults.headers.common["User-Agent"] = process.env.USER_AGENT;
 
+app.use(express.static('public'))
 app.use(cors());
 app.get("/", async (req, res) => {
   res.send("ANIYOI API IS UP 🚀");
