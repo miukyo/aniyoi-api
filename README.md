@@ -76,7 +76,7 @@ fetch("https://localhost:3001/{source}/recent")
 
 Output >>
 
-```json
+```ts
 {
   "list": [
      {
@@ -107,7 +107,7 @@ fetch("https://localhost:3001/{source}/popular")
 
 Output >>
 
-```json
+```ts
 {
   "list": [
      {
@@ -138,7 +138,7 @@ fetch("https://localhost:3001/{source}/search")
 
 Output >>
 
-```json
+```ts
 {
   "list": [
      {
@@ -169,7 +169,7 @@ fetch("https://localhost:3001/{source}/genre")
 Output >>
 
 
-```json
+```ts
 [
   {
     "slug": string,
@@ -194,7 +194,7 @@ fetch("https://localhost:3001/{source}/genre/{genre}")
 
 Output >>
 
-```json
+```ts
 {
   "list": [
      {
@@ -225,7 +225,7 @@ fetch("https://localhost:3001/{source}/season")
 Output >>
 
 
-```json
+```ts
 [
   {
     "slug": string,
@@ -250,7 +250,7 @@ fetch("https://localhost:3001/{source}/season/{season}")
 
 Output >>
 
-```json
+```ts
 {
   "list": [
      {
@@ -280,7 +280,7 @@ fetch("https://localhost:3001/anime/{anime-slug}")
 
 Output >>
 
-```json
+```ts
 {
   "slug": string,
   "title": string,
@@ -312,7 +312,7 @@ fetch("https://localhost:3001/{source}/anime/{anime-slug}/{anime-episode}")
 
 Output >>
 
-```json
+```ts
 {
   "episode": number,
   "video":  [
