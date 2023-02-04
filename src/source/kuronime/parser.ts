@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 import cheerio from "cheerio";
 import type {
   AnimeDetails,
@@ -323,7 +323,6 @@ export const animeVideoSource = async (
   try {
     const base = await axios.get(`${BASEURL}/nonton-${slug}-episode-${ep}`);
     const $ = cheerio.load(base.data);
-    let videoSource: { quality: string; url: string }[] = [];
     if (!!!$(".postbody").html()) {
       throw new Error("Episode not found");
     }
@@ -348,13 +347,23 @@ export const animeVideoSource = async (
     let getSrcs: { file: string; label: string; type: string }[] = JSON.parse(
       decrypt.match(/srcs\s*=\s*(\[.*\])/)![1]
     );
-    getSrcs.forEach((el, i) => {
-      videoSource.push({
-        quality:
-          el.label === "HD" ? "720p" : el.label === "SD" ? "480p" : "Unknown",
-        url: el.file,
-      });
-    });
+
+    let videoSource: { quality: string; url: string }[] = [];
+
+    const waitSrc: Promise<{ quality: string; url: string }>[] = getSrcs.map(
+      async (el, i) => {
+        const url = await axios.get(el.file, { maxRedirects: 0 });
+        let $$$ = cheerio.load(url.data);
+        let surl = $$$("a").attr("href");
+        return {
+          quality:
+            el.label === "HD" ? "720p" : el.label === "SD" ? "480p" : "Unknown",
+          url: surl!,
+        };
+      }
+    );
+
+    videoSource = await Promise.all(waitSrc);
     return {
       episode: ~~ep,
       video: videoSource,
