@@ -56,7 +56,7 @@ Beberapa source mungkin tidak support dengan beberapa fitur. Dikarenakan kurangn
 
 | Source                       | Fitur yang bermasalah                                                                                                                                                                                |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <b>Kuronime</b> (Recomended) | <ul><li>🟡 Mendapatkan Streaming URL mungkin agak lama karena link url di Enkripsi dan harus di Dekripsi dahulu dari playernya.</li></ul>                                                             |
+| <b>Kuronime</b>| <ul><li>🟡 Mendapatkan Streaming URL mungkin agak lama karena link url di Enkripsi dan harus di Dekripsi dahulu dari playernya.</li><li>🔴 Source video selain local tidak bisa di pakai (dalam perbaikan)</li></ul>                                                             |
 | <b>Kuramanime</b>            | <ul><li>🔴 Anime Terbaru tidak menampilkan yang terbaru melainkan campur aduk.</li><li>🔴 Anime Popular juga sama dengan yang diatas.</li><li>🔴 Beberapa page hanya memiliki maximum 8 page.</li></ul> |
 | <b>Nanime</b>                | <ul><li>🔴 Tidak support direct Streaming URL hanya bisa menggunakan embed.</li><li>🔴 Tidak ada Anime Popular.</li></ul>                                                                              |
 
