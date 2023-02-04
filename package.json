@@ -2,6 +2,7 @@
   "name": "aniyoi-api",
   "version": "1.0.0",
   "description": "Anime Scrapper",
+  "author": "miukyo",
   "main": "src/server.ts",
   "types": "lib/index.d.ts",
   "license": "MIT",
