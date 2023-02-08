@@ -331,43 +331,50 @@ export const animeVideoSource = async (
       .attr("data-src")!;
     const videoSourceBase = await axios.get(embedUrl);
     const $$ = cheerio.load(videoSourceBase.data);
-    let enc = $$("script:not([src])")
-      .first()
-      .html()!
-      .match(/\(r\)\)\}(.*)/)!;
-    let penc = enc[1].replace(/[\(\)"']/g, "").split(",");
-    let decrypt = decryptor(
-      penc[0],
-      parseInt(penc[1]),
-      penc[2],
-      parseInt(penc[3]),
-      parseInt(penc[4]),
-      parseInt(penc[5])
-    );
-    let getSrcs: { file: string; label: string; type: string }[] = JSON.parse(
-      decrypt.match(/srcs\s*=\s*(\[.*\])/)![1]
-    );
+    if (!!$(".postbody .megavid .video-nav .iconx a").html()) {
+      let enc = $$("script:not([src])")
+        .first()
+        .html()!
+        .match(/\(r\)\)\}(.*)/)!;
+      let penc = enc[1].replace(/[\(\)"']/g, "").split(",");
+      let decrypt = decryptor(
+        penc[0],
+        parseInt(penc[1]),
+        penc[2],
+        parseInt(penc[3]),
+        parseInt(penc[4]),
+        parseInt(penc[5])
+      );
+      let getSrcs: { file: string; label: string; type: string }[] = JSON.parse(
+        decrypt.match(/srcs\s*=\s*(\[.*\])/)![1]
+      );
 
-    let videoSource: { quality: string; url: string }[] = [];
+      let videoSource: { quality: string; url: string }[] = [];
 
-    const waitSrc: Promise<{ quality: string; url: string }>[] = getSrcs.map(
-      async (el, i) => {
-        const url = await axios.get(el.file, { maxRedirects: 0 });
-        let $$$ = cheerio.load(url.data);
-        let surl = $$$("a").attr("href");
-        return {
-          quality:
-            el.label === "HD" ? "720p" : el.label === "SD" ? "480p" : "Unknown",
-          url: surl!,
-        };
-      }
-    );
-
-    videoSource = await Promise.all(waitSrc);
-    return {
-      episode: ~~ep,
-      video: videoSource,
-    };
+      const waitSrc: Promise<{ quality: string; url: string }>[] = getSrcs.map(
+        async (el, i) => {
+          const url = await axios.get(el.file, { maxRedirects: 0 });
+          let $$$ = cheerio.load(url.data);
+          let surl = $$$("a").attr("href");
+          return {
+            quality:
+              el.label === "HD"
+                ? "720p"
+                : el.label === "SD"
+                ? "480p"
+                : "Unknown",
+            url: surl!,
+          };
+        }
+      );
+      videoSource = await Promise.all(waitSrc);
+      return {
+        episode: ~~ep,
+        video: videoSource,
+      };
+    } else {
+      throw new Error("Video source are not supported.");
+    }
   } catch (err: any) {
     throw err;
   }
