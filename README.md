@@ -54,11 +54,11 @@ Server akan berjalan di http://localhost:3001
 
 Beberapa source mungkin tidak support dengan beberapa fitur. Dikarenakan kurangnya informasi pada website asli.
 
-| Source                       | Fitur yang bermasalah                                                                                                                                                                                |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <b>Kuronime</b>| <ul><li>🟡 Mendapatkan Streaming URL mungkin agak lama karena link url di Enkripsi dan harus di Dekripsi dahulu dari playernya.</li><li>🔴 Source video selain local tidak support</li></ul>                                                             |
-| <b>Kuramanime</b>            | <ul><li>🔴 Anime Terbaru tidak menampilkan yang terbaru melainkan campur aduk.</li><li>🔴 Anime Popular juga sama dengan yang diatas.</li><li>🔴 Beberapa page hanya memiliki maximum 8 page.</li></ul> |
-| <b>Nanime</b>                | <ul><li>🔴 Tidak support direct Streaming URL hanya bisa menggunakan embed.</li><li>🔴 Tidak ada Anime Popular.</li></ul> |
+| Source            | Fitur yang bermasalah                                                                                                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <b>Kuronime</b>   | <ul><li>🟡 Mendapatkan Streaming URL mungkin agak lama karena link url di Enkripsi dan harus di Dekripsi dahulu dari playernya.</li><li>🔴 Source video selain local tidak di support</li></ul>        |
+| <b>Kuramanime</b> | <ul><li>🔴 Anime Terbaru tidak menampilkan yang terbaru melainkan campur aduk.</li><li>🔴 Anime Popular juga sama dengan yang diatas.</li><li>🔴 Beberapa page hanya memiliki maximum 8 page.</li></ul> |
+| <b>Nanime</b>     | <ul><li>🔴 Tidak support direct Streaming URL hanya bisa menggunakan embed.</li><li>🔴 Tidak ada Anime Popular.</li></ul>                                                                              |
 
 
 Jika kalian tau website anime subtitle anime yang bagus dan detail mohon kontak saya. Akan saya include di sini, Terima kasih!
@@ -187,9 +187,9 @@ Output >>
 
 ### Get Genre
 
-| Parameter              | Description                                              |
-| ---------------------- | -------------------------------------------------------- |
-| `page` (int)           | pilih page dari maximum page. Default : 1                |
+| Parameter              | Description                                             |
+| ---------------------- | ------------------------------------------------------- |
+| `page` (int)           | pilih page dari maximum page. Default : 1               |
 | `:genre-slug` (string) | genre slug dapat didapatkan dalam respon **Genre List** |
 
 
