@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Anime Scrapper",
   "author": "miukyo",
-  "main": "src/server.ts",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -r dotenv/config ./src/server.ts",
-    "dev": "nodemon -r dotenv/config ./src/server.ts"
+    "start": "ts-node -r dotenv/config ./src/index.ts",
+    "build": "tsc",
+    "dev": "nodemon -r dotenv/config ./src/index.ts"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.31",

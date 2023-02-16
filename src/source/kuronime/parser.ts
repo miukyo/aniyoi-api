@@ -9,7 +9,7 @@ import type {
 } from "../utils/types";
 import decryptor from "./decryptor.js";
 
-const BASEURL = process.env.KURONIME_URL;
+const BASEURL = "https://45.12.2.2";
 
 export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
   let list: Anime[] = [];
