@@ -1,12 +1,6 @@
 import axios, { Axios } from "axios";
 import cheerio from "cheerio";
-import type {
-  AnimeDetails,
-  Anime,
-  Genre,
-  AnimeVideo,
-  ListAnime,
-} from "../utils/types";
+import type { AnimeDetails, Anime, Genre, AnimeVideo, ListAnime } from "../utils/types";
 import decryptor from "./decryptor.js";
 
 const BASEURL = "https://45.12.2.2";
@@ -38,10 +32,7 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
           title: $(el).find(".bsuxtt").text()!,
           episode: ~~$(el).find(".bt .ep").text().replace("Episode", "").trim(),
           cover:
-            $(el)
-              .find(".limit img[itemprop]")
-              .attr("data-src")
-              ?.split("?")[0]! + "?resize=141,200",
+            $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0]! + "?resize=141,200",
           url: $(el)
             .find("a")
             .attr("href")
@@ -58,15 +49,10 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
   }
 };
 
-export const search = async (
-  query: string,
-  page: number = 1
-): Promise<ListAnime> => {
+export const search = async (query: string, page: number = 1): Promise<ListAnime> => {
   let list: Anime[] = [];
   try {
-    const base = await axios.get(
-      `${BASEURL}/anime/page/${page}/?title=${query}&order=update`
-    );
+    const base = await axios.get(`${BASEURL}/anime/page/${page}/?title=${query}&order=update`);
     const $ = cheerio.load(base.data);
     if (!!!$(".postbody").html()) {
       throw new Error("Page not found");
@@ -85,10 +71,7 @@ export const search = async (
           slug: $(el).find("a").attr("href")?.split("/")[4]!,
           title: $(el).find("a").attr("title")!,
           cover:
-            $(el)
-              .find(".limit img[itemprop]")
-              .attr("data-src")
-              ?.split("?")[0]! + "?resize=141,200",
+            $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0]! + "?resize=141,200",
           url: $(el).find("a").attr("href")!,
         });
       });
@@ -127,10 +110,7 @@ export const popular = async (page: number = 1): Promise<ListAnime> => {
           slug: $(el).find("a").attr("href")?.split("/")[4]!,
           title: $(el).find("a").attr("title")!,
           cover:
-            $(el)
-              .find(".limit img[itemprop]")
-              .attr("data-src")
-              ?.split("?")[0]! + "?resize=141,200",
+            $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0]! + "?resize=141,200",
           url: $(el).find("a").attr("href")!,
         });
       });
@@ -168,10 +148,7 @@ export const genreList = async (page: number = 1): Promise<Genre[]> => {
   }
 };
 
-export const genre = async (
-  genre: string,
-  page: number = 1
-): Promise<ListAnime> => {
+export const genre = async (genre: string, page: number = 1): Promise<ListAnime> => {
   let list: Anime[] = [];
   try {
     const base = await axios.get(`${BASEURL}/genres/${genre}/page/${page}`);
@@ -193,10 +170,7 @@ export const genre = async (
           slug: $(el).find("a").attr("href")?.split("/")[4]!,
           title: $(el).find("a").attr("title")!,
           cover:
-            $(el)
-              .find(".limit img[itemprop]")
-              .attr("data-src")
-              ?.split("?")[0]! + "?resize=141,200",
+            $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0]! + "?resize=141,200",
           url: $(el).find("a").attr("href")!,
         });
       });
@@ -234,10 +208,7 @@ export const seasonList = async (page: number = 1): Promise<Genre[]> => {
   }
 };
 
-export const season = async (
-  season: string,
-  page: number = 1
-): Promise<ListAnime> => {
+export const season = async (season: string, page: number = 1): Promise<ListAnime> => {
   let list: Anime[] = [];
   try {
     const base = await axios.get(`${BASEURL}/season/${season}`);
@@ -253,9 +224,7 @@ export const season = async (
         return list.push({
           slug: $(el).find(".tisebox a").attr("href")?.split("/")[4]!,
           title: $(el).find(".tisebox a").text()!,
-          cover:
-            $(el).find(".bigsebox img").attr("data-src")?.split("?")[0]! +
-            "?resize=141,200",
+          cover: $(el).find(".bigsebox img").attr("data-src")?.split("?")[0]! + "?resize=141,200",
           url: $(el).find(".tisebox a").attr("href")!,
         });
       });
@@ -293,22 +262,13 @@ export const anime = async (slug: string): Promise<AnimeDetails> => {
     return {
       slug: $('meta[property="og:url"]').attr("content")?.split("/")[4]!,
       title: $(".postbody .info-header h1.entry-title").text(),
-      titleAlt: $(".postbody .infodetail ul li:first-child")
-        .text()
-        .replace("Judul:", "")
-        .trim(),
+      titleAlt: $(".postbody .infodetail ul li:first-child").text().replace("Judul:", "").trim(),
       synopsis: $(".postbody .main-info .r .conx p").text(),
-      episodeTotal:
-        ~~$(".postbody .infodetail ul li:nth-child(9)")
-          .text()
-          .split(":")[1]
-          .trim() | 0,
+      episodeTotal: ~~$(".postbody .infodetail ul li:nth-child(9)").text().split(":")[1].trim() | 0,
       episode: episode.length,
       season: $(".postbody .infodetail ul li:nth-child(6)").find("a").text(),
       genre: genre,
-      cover:
-        $(".postbody .main-info .l img").attr("data-src")?.split("?")[0]! +
-        "?resize=141,200"!,
+      cover: $(".postbody .main-info .l img").attr("data-src")?.split("?")[0]! + "?resize=141,200"!,
       url: $('meta[property="og:url"]').attr("content")!,
     };
   } catch (err: any) {
@@ -316,10 +276,7 @@ export const anime = async (slug: string): Promise<AnimeDetails> => {
   }
 };
 
-export const animeVideoSource = async (
-  slug: string,
-  ep: number
-): Promise<AnimeVideo> => {
+export const animeVideoSource = async (slug: string, ep: number): Promise<AnimeVideo> => {
   try {
     const base = await axios.get(`${BASEURL}/nonton-${slug}-episode-${ep}`);
     const $ = cheerio.load(base.data);
@@ -351,22 +308,15 @@ export const animeVideoSource = async (
 
       let videoSource: { quality: string; url: string }[] = [];
 
-      const waitSrc: Promise<{ quality: string; url: string }>[] = getSrcs.map(
-        async (el, i) => {
-          const url = await axios.get(el.file, { maxRedirects: 0 });
-          let $$$ = cheerio.load(url.data);
-          let surl = $$$("a").attr("href");
-          return {
-            quality:
-              el.label === "HD"
-                ? "720p"
-                : el.label === "SD"
-                ? "480p"
-                : "Unknown",
-            url: surl!,
-          };
-        }
-      );
+      const waitSrc: Promise<{ quality: string; url: string }>[] = getSrcs.map(async (el, i) => {
+        const url = await axios.get(el.file, { maxRedirects: 0 });
+        let $$$ = cheerio.load(url.data);
+        let surl = $$$("a").attr("href");
+        return {
+          quality: el.label === "HD" ? "720p" : el.label === "SD" ? "480p" : "Unknown",
+          url: surl!,
+        };
+      });
       videoSource = await Promise.all(waitSrc);
       return {
         episode: ~~ep,
