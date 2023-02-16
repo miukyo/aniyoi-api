@@ -34,10 +34,7 @@ const recentRelease = async (page = 1) => {
                     .replace(/\b(?:nonton-|-episode-[a-zA-Z0-9_]*)\b/gi, ""),
                 title: $(el).find(".bsuxtt").text(),
                 episode: ~~$(el).find(".bt .ep").text().replace("Episode", "").trim(),
-                cover: $(el)
-                    .find(".limit img[itemprop]")
-                    .attr("data-src")
-                    ?.split("?")[0] + "?resize=141,200",
+                cover: $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0] + "?resize=141,200",
                 url: $(el)
                     .find("a")
                     .attr("href")
@@ -76,10 +73,7 @@ const search = async (query, page = 1) => {
             return list.push({
                 slug: $(el).find("a").attr("href")?.split("/")[4],
                 title: $(el).find("a").attr("title"),
-                cover: $(el)
-                    .find(".limit img[itemprop]")
-                    .attr("data-src")
-                    ?.split("?")[0] + "?resize=141,200",
+                cover: $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0] + "?resize=141,200",
                 url: $(el).find("a").attr("href"),
             });
         });
@@ -118,10 +112,7 @@ const popular = async (page = 1) => {
             return list.push({
                 slug: $(el).find("a").attr("href")?.split("/")[4],
                 title: $(el).find("a").attr("title"),
-                cover: $(el)
-                    .find(".limit img[itemprop]")
-                    .attr("data-src")
-                    ?.split("?")[0] + "?resize=141,200",
+                cover: $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0] + "?resize=141,200",
                 url: $(el).find("a").attr("href"),
             });
         });
@@ -182,10 +173,7 @@ const genre = async (genre, page = 1) => {
             return list.push({
                 slug: $(el).find("a").attr("href")?.split("/")[4],
                 title: $(el).find("a").attr("title"),
-                cover: $(el)
-                    .find(".limit img[itemprop]")
-                    .attr("data-src")
-                    ?.split("?")[0] + "?resize=141,200",
+                cover: $(el).find(".limit img[itemprop]").attr("data-src")?.split("?")[0] + "?resize=141,200",
                 url: $(el).find("a").attr("href"),
             });
         });
@@ -241,8 +229,7 @@ const season = async (season, page = 1) => {
             return list.push({
                 slug: $(el).find(".tisebox a").attr("href")?.split("/")[4],
                 title: $(el).find(".tisebox a").text(),
-                cover: $(el).find(".bigsebox img").attr("data-src")?.split("?")[0] +
-                    "?resize=141,200",
+                cover: $(el).find(".bigsebox img").attr("data-src")?.split("?")[0] + "?resize=141,200",
                 url: $(el).find(".tisebox a").attr("href"),
             });
         });
@@ -281,20 +268,13 @@ const anime = async (slug) => {
         return {
             slug: $('meta[property="og:url"]').attr("content")?.split("/")[4],
             title: $(".postbody .info-header h1.entry-title").text(),
-            titleAlt: $(".postbody .infodetail ul li:first-child")
-                .text()
-                .replace("Judul:", "")
-                .trim(),
+            titleAlt: $(".postbody .infodetail ul li:first-child").text().replace("Judul:", "").trim(),
             synopsis: $(".postbody .main-info .r .conx p").text(),
-            episodeTotal: ~~$(".postbody .infodetail ul li:nth-child(9)")
-                .text()
-                .split(":")[1]
-                .trim() | 0,
+            episodeTotal: ~~$(".postbody .infodetail ul li:nth-child(9)").text().split(":")[1].trim() | 0,
             episode: episode.length,
             season: $(".postbody .infodetail ul li:nth-child(6)").find("a").text(),
             genre: genre,
-            cover: $(".postbody .main-info .l img").attr("data-src")?.split("?")[0] +
-                "?resize=141,200",
+            cover: $(".postbody .main-info .l img").attr("data-src")?.split("?")[0] + "?resize=141,200",
             url: $('meta[property="og:url"]').attr("content"),
         };
     }
@@ -329,11 +309,7 @@ const animeVideoSource = async (slug, ep) => {
                 let $$$ = cheerio_1.default.load(url.data);
                 let surl = $$$("a").attr("href");
                 return {
-                    quality: el.label === "HD"
-                        ? "720p"
-                        : el.label === "SD"
-                            ? "480p"
-                            : "Unknown",
+                    quality: el.label === "HD" ? "720p" : el.label === "SD" ? "480p" : "Unknown",
                     url: surl,
                 };
             });
