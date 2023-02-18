@@ -280,7 +280,7 @@ Output >>
 | `:anime-slug` (string) | anime slug dapat didapatkan dalam respon list seperti diatas. |
 
 ```js
-fetch("localhost:3001/anime/{anime-slug}")
+fetch("localhost:3001/{source}/anime/{anime-slug}")
   .then((response) => response.json())
   .then((animelist) => console.log(animelist));
 ```
