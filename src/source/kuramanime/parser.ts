@@ -17,7 +17,7 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
       `${BASEURL}/anime/ongoing?order_by=latest&page=${page}`
     );
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .product__item").html()) {
+    if (!$("#animeList .product__item").html()) {
       throw new Error("Page not found, you may request more than the maximum page");
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -57,7 +57,7 @@ export const search = async (
       `${BASEURL}/anime?search=${query}&order_by=latest&page=${page}`
     );
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .product__item").html()) {
+    if (!$("#animeList .product__item").html()) {
       throw new Error("Anime not found,or you may request more than the maximum page");
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -91,7 +91,7 @@ export const popular = async (page: number = 1): Promise<ListAnime> => {
       `${BASEURL}/anime/ongoing?order_by=popular&page=${page}`
     );
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .product__item").html()) {
+    if (!$("#animeList .product__item").html()) {
       throw new Error("Page not found, you may request more than the maximum page");
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -128,7 +128,7 @@ export const genreList = async (page: number = 1): Promise<Genre[]> => {
       `${BASEURL}/properties/genre?genre_type=all&page=${page}`
     );
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .kuramanime__genres li").html()) {
+    if (!$("#animeList .kuramanime__genres li").html()) {
       throw new Error("Page not found");
     }
     $("#animeList .kuramanime__genres li").each((i, el) => {
@@ -154,7 +154,7 @@ export const genre = async (
       `${BASEURL}/properties/genre/${genre}?order_by=latest&page=${page}`
     );
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .product__item").html()) {
+    if (!$("#animeList .product__item").html()) {
       throw new Error("Genre not found, or you may request more than the maximum page");
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -183,7 +183,7 @@ export const seasonList = async (page: number = 1): Promise<Genre[]> => {
   try {
     const base = await axios.get(`${BASEURL}/properties/season?page=${page}`);
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .kuramanime__genres li").html()) {
+    if (!$("#animeList .kuramanime__genres li").html()) {
       throw new Error("Page not found");
     }
     $("#animeList .kuramanime__genres li").each((i, el) => {
@@ -209,7 +209,7 @@ export const season = async (
       `${BASEURL}/properties/season/${season}?order_by=latest&page=${page}`
     );
     const $ = cheerio.load(base.data);
-    if (!!!$("#animeList .product__item").html()) {
+    if (!$("#animeList .product__item").html()) {
       throw new Error("Season not found, or you may request more than the maximum page");
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -237,7 +237,7 @@ export const anime = async (slug: string): Promise<AnimeDetails> => {
   try {
     const base = await axios.get(`${BASEURL}/anime/${slug}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".anime__details__widget ul").html()) {
+    if (!$(".anime__details__widget ul").html()) {
       throw new Error("Anime not found");
     }
     let genre: string[] = [];
@@ -290,7 +290,7 @@ export const animeVideoSource = async (
     );
     const $ = cheerio.load(base.data);
     let videoSource: { quality: string; url: string }[] = [];
-    if (!!!$("#animeVideoPlayer video").html()) {
+    if (!$("#animeVideoPlayer video").html()) {
       throw new Error("Episode not found");
     }
     $("#animeVideoPlayer video")

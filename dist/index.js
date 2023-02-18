@@ -9,6 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const kuramanime_1 = __importDefault(require("./source/kuramanime/kuramanime"));
 const nanime_1 = __importDefault(require("./source/nanime/nanime"));
 const kuronime_1 = __importDefault(require("./source/kuronime/kuronime"));
+const otakudesu_1 = __importDefault(require("./source/otakudesu/otakudesu"));
 const axios_1 = __importDefault(require("axios"));
 exports.app = (0, express_1.default)();
 axios_1.default.defaults.validateStatus = () => true;
@@ -21,6 +22,7 @@ exports.app.get("/", async (req, res) => {
 exports.app.use("/kuramanime", kuramanime_1.default);
 exports.app.use("/nanime", nanime_1.default);
 exports.app.use("/kuronime", kuronime_1.default);
+exports.app.use("/otakudesu", otakudesu_1.default);
 exports.app.listen(process.env.PORT || 3001, () => {
     console.warn("\nReady 🚀");
 });

@@ -10,7 +10,7 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
   try {
     const base = await axios.get(`${BASEURL}/page/${page}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     let maxPage = ~~$(".postbody>.bixbox")
@@ -54,7 +54,7 @@ export const search = async (query: string, page: number = 1): Promise<ListAnime
   try {
     const base = await axios.get(`${BASEURL}/anime/page/${page}/?title=${query}&order=update`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     let maxPage = ~~$(".postbody>.bixbox")
@@ -93,7 +93,7 @@ export const popular = async (page: number = 1): Promise<ListAnime> => {
   try {
     const base = await axios.get(`${BASEURL}/popular-anime/page/${page}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     let maxPage = ~~$(".postbody>.bixbox")
@@ -129,7 +129,7 @@ export const genreList = async (page: number = 1): Promise<Genre[]> => {
   try {
     const base = await axios.get(`${BASEURL}/genres`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     $(".postbody>.bixbox")
@@ -153,7 +153,7 @@ export const genre = async (genre: string, page: number = 1): Promise<ListAnime>
   try {
     const base = await axios.get(`${BASEURL}/genres/${genre}/page/${page}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     let maxPage = ~~$(".postbody>.bixbox")
@@ -189,7 +189,7 @@ export const seasonList = async (page: number = 1): Promise<Genre[]> => {
   try {
     const base = await axios.get(`${BASEURL}/season/winter-2023`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     $(".postbody>.bixbox")
@@ -213,7 +213,7 @@ export const season = async (season: string, page: number = 1): Promise<ListAnim
   try {
     const base = await axios.get(`${BASEURL}/season/${season}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Page not found");
     }
     let maxPage = 0;
@@ -242,7 +242,7 @@ export const anime = async (slug: string): Promise<AnimeDetails> => {
   try {
     const base = await axios.get(`${BASEURL}/anime/${slug}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Anime not found");
     }
     let genre: string[] = [];
@@ -280,7 +280,7 @@ export const animeVideoSource = async (slug: string, ep: number): Promise<AnimeV
   try {
     const base = await axios.get(`${BASEURL}/nonton-${slug}-episode-${ep}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".postbody").html()) {
+    if (!$(".postbody").html()) {
       throw new Error("Episode not found");
     }
     let embedUrl: string = $("#tonton.video-content .player-embed")

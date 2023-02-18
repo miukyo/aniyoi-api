@@ -10,7 +10,7 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
     const base = await axios.get(`${BASEURL}/page/${page}`);
     const $ = cheerio.load(base.data);
     let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html()!;
-    if (!!!maxPage) {
+    if (!maxPage) {
       throw new Error("Page not found, you may request more than the maximum page");
     }
     $(".box-poster .content-item").each((i, el) => {
@@ -39,7 +39,7 @@ export const search = async (query: string, page: number = 1): Promise<ListAnime
     const base = await axios.get(`${BASEURL}/page/${page}/?s=${query}`);
     const $ = cheerio.load(base.data);
     let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html()!;
-    if (!!!maxPage) {
+    if (!maxPage) {
       throw new Error("Anime not found, or you may request more than the maximum page");
     }
     $(".box-poster .content-item").each((i, el) => {
@@ -71,7 +71,7 @@ export const genreList = async (page: number = 1): Promise<Genre[]> => {
   try {
     const base = await axios.get(`${BASEURL}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
+    if (!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
       throw new Error("Page not found, you may request more than the maximum page");
     }
     $(".box-content:last-child .box-primary:nth-child(2) .box-body a").each((i, el) => {
@@ -93,7 +93,7 @@ export const genre = async (genre: string, page: number = 1): Promise<ListAnime>
     const base = await axios.get(`${BASEURL}/genre/${genre}/page/${page}`);
     const $ = cheerio.load(base.data);
     let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html()!;
-    if (!!!maxPage) {
+    if (!maxPage) {
       throw new Error("Genre not found, you may request more than the maximum page");
     }
     $(".box-poster .content-item").each((i, el) => {
@@ -125,7 +125,7 @@ export const seasonList = async (page: number = 1): Promise<Genre[]> => {
   try {
     const base = await axios.get(`${BASEURL}/properties/season?page=${page}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
+    if (!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
       throw new Error("Page not found, or you may request more than the maximum page");
     }
     $(".box-content:last-child .box-primary:nth-child(3) .box-body a").each((i, el) => {
@@ -147,7 +147,7 @@ export const season = async (season: string, page: number = 1): Promise<ListAnim
     const base = await axios.get(`${BASEURL}/year_/${season}/page/${page}`);
     const $ = cheerio.load(base.data);
     let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html()!;
-    if (!!!maxPage) {
+    if (!maxPage) {
       throw new Error("Season not found, you may request more than the maximum page");
     }
     $(".box-poster .content-item").each((i, el) => {
@@ -178,7 +178,7 @@ export const anime = async (slug: string): Promise<AnimeDetails> => {
   try {
     const base = await axios.get(`${BASEURL}/anime/${slug}`);
     const $ = cheerio.load(base.data);
-    if (!!!$(".box-default .box-body > div:nth-child(3) .episode_list").html()) {
+    if (!$(".box-default .box-body > div:nth-child(3) .episode_list").html()) {
       throw new Error("Anime not found");
     }
     let genre: string[] = [];
@@ -229,7 +229,7 @@ export const animeVideoSource = async (slug: string, ep: number): Promise<AnimeV
     const formattedEp = ("00" + ep).slice(-3);
     const base = await axios.get(`${BASEURL}/episode/${slug}-episode-${formattedEp}`);
     const $ = cheerio.load(base.data);
-    if (!!!$("#change-server > option").html()) {
+    if (!$("#change-server > option").html()) {
       throw new Error("Episode not found");
     }
     let videoSource: { quality: string; url: string }[] = [];
