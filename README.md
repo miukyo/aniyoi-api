@@ -40,8 +40,6 @@ cd aniyoi-api
 npm install #atau yarn install
 ```
 
-Ganti file `.env.example` menjadi `.env`
-
 Start server dengan command berikut:
 
 ```sh
