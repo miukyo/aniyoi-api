@@ -6,9 +6,9 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -r dotenv/config ./src/index.ts",
+    "start": "node ./dist/index.js",
     "build": "rimraf dist && tsc",
-    "dev": "nodemon -r dotenv/config ./src/index.ts"
+    "dev": "nodemon ./src/index.ts"
   },
   "pre-commit": [
     "build"
