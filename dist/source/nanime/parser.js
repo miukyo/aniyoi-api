@@ -13,7 +13,7 @@ const recentRelease = async (page = 1) => {
         const base = await axios_1.default.get(`${BASEURL}/page/${page}`);
         const $ = cheerio_1.default.load(base.data);
         let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html();
-        if (!!!maxPage) {
+        if (!maxPage) {
             throw new Error("Page not found, you may request more than the maximum page");
         }
         $(".box-poster .content-item").each((i, el) => {
@@ -42,7 +42,7 @@ const search = async (query, page = 1) => {
         const base = await axios_1.default.get(`${BASEURL}/page/${page}/?s=${query}`);
         const $ = cheerio_1.default.load(base.data);
         let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html();
-        if (!!!maxPage) {
+        if (!maxPage) {
             throw new Error("Anime not found, or you may request more than the maximum page");
         }
         $(".box-poster .content-item").each((i, el) => {
@@ -75,7 +75,7 @@ const genreList = async (page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
+        if (!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
             throw new Error("Page not found, you may request more than the maximum page");
         }
         $(".box-content:last-child .box-primary:nth-child(2) .box-body a").each((i, el) => {
@@ -98,7 +98,7 @@ const genre = async (genre, page = 1) => {
         const base = await axios_1.default.get(`${BASEURL}/genre/${genre}/page/${page}`);
         const $ = cheerio_1.default.load(base.data);
         let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html();
-        if (!!!maxPage) {
+        if (!maxPage) {
             throw new Error("Genre not found, you may request more than the maximum page");
         }
         $(".box-poster .content-item").each((i, el) => {
@@ -131,7 +131,7 @@ const seasonList = async (page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/properties/season?page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
+        if (!$(".box-content:last-child .box-primary:nth-child(2) .box-body a").html()) {
             throw new Error("Page not found, or you may request more than the maximum page");
         }
         $(".box-content:last-child .box-primary:nth-child(3) .box-body a").each((i, el) => {
@@ -154,7 +154,7 @@ const season = async (season, page = 1) => {
         const base = await axios_1.default.get(`${BASEURL}/year_/${season}/page/${page}`);
         const $ = cheerio_1.default.load(base.data);
         let maxPage = ~~$(".box-poster .btn-group .page-numbers:not(.prev,.next)").last().html();
-        if (!!!maxPage) {
+        if (!maxPage) {
             throw new Error("Season not found, you may request more than the maximum page");
         }
         $(".box-poster .content-item").each((i, el) => {
@@ -186,7 +186,7 @@ const anime = async (slug) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/anime/${slug}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$(".box-default .box-body > div:nth-child(3) .episode_list").html()) {
+        if (!$(".box-default .box-body > div:nth-child(3) .episode_list").html()) {
             throw new Error("Anime not found");
         }
         let genre = [];
@@ -230,7 +230,7 @@ const animeVideoSource = async (slug, ep) => {
         const formattedEp = ("00" + ep).slice(-3);
         const base = await axios_1.default.get(`${BASEURL}/episode/${slug}-episode-${formattedEp}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#change-server > option").html()) {
+        if (!$("#change-server > option").html()) {
             throw new Error("Episode not found");
         }
         let videoSource = [];

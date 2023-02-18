@@ -12,7 +12,7 @@ const recentRelease = async (page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/anime/ongoing?order_by=latest&page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .product__item").html()) {
+        if (!$("#animeList .product__item").html()) {
             throw new Error("Page not found, you may request more than the maximum page");
         }
         let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -48,7 +48,7 @@ const search = async (query, page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/anime?search=${query}&order_by=latest&page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .product__item").html()) {
+        if (!$("#animeList .product__item").html()) {
             throw new Error("Anime not found,or you may request more than the maximum page");
         }
         let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -81,7 +81,7 @@ const popular = async (page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/anime/ongoing?order_by=popular&page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .product__item").html()) {
+        if (!$("#animeList .product__item").html()) {
             throw new Error("Page not found, you may request more than the maximum page");
         }
         let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -117,7 +117,7 @@ const genreList = async (page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/properties/genre?genre_type=all&page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .kuramanime__genres li").html()) {
+        if (!$("#animeList .kuramanime__genres li").html()) {
             throw new Error("Page not found");
         }
         $("#animeList .kuramanime__genres li").each((i, el) => {
@@ -139,7 +139,7 @@ const genre = async (genre, page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/properties/genre/${genre}?order_by=latest&page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .product__item").html()) {
+        if (!$("#animeList .product__item").html()) {
             throw new Error("Genre not found, or you may request more than the maximum page");
         }
         let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -169,7 +169,7 @@ const seasonList = async (page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/properties/season?page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .kuramanime__genres li").html()) {
+        if (!$("#animeList .kuramanime__genres li").html()) {
             throw new Error("Page not found");
         }
         $("#animeList .kuramanime__genres li").each((i, el) => {
@@ -191,7 +191,7 @@ const season = async (season, page = 1) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/properties/season/${season}?order_by=latest&page=${page}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$("#animeList .product__item").html()) {
+        if (!$("#animeList .product__item").html()) {
             throw new Error("Season not found, or you may request more than the maximum page");
         }
         let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
@@ -220,7 +220,7 @@ const anime = async (slug) => {
     try {
         const base = await axios_1.default.get(`${BASEURL}/anime/${slug}`);
         const $ = cheerio_1.default.load(base.data);
-        if (!!!$(".anime__details__widget ul").html()) {
+        if (!$(".anime__details__widget ul").html()) {
             throw new Error("Anime not found");
         }
         let genre = [];
@@ -267,7 +267,7 @@ const animeVideoSource = async (slug, ep) => {
         const base = await axios_1.default.get(actualUrl + `/episode/${ep}?activate_stream=1`);
         const $ = cheerio_1.default.load(base.data);
         let videoSource = [];
-        if (!!!$("#animeVideoPlayer video").html()) {
+        if (!$("#animeVideoPlayer video").html()) {
             throw new Error("Episode not found");
         }
         $("#animeVideoPlayer video")

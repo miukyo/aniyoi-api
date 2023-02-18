@@ -69,31 +69,16 @@ app.get("/genre/:genre", async (req, res) => {
     }
 });
 app.get("/season", async (req, res) => {
-    try {
-        const { page } = req.query;
-        const data = await (0, parser_1.seasonList)(page);
-        return res.status(200).json(data);
-    }
-    catch (err) {
-        return res.status(500).json({
-            error: "Internal Error",
-            message: err.toString(),
-        });
-    }
+    return res.status(500).json({
+        error: "Internal Error",
+        message: "This request is not available for this server",
+    });
 });
 app.get("/season/:season", async (req, res) => {
-    try {
-        const seasonYear = req.params.season;
-        const { page } = req.query;
-        const data = await (0, parser_1.season)(seasonYear, page);
-        return res.status(200).json(data);
-    }
-    catch (err) {
-        return res.status(500).json({
-            error: "Internal Error",
-            message: err.toString(),
-        });
-    }
+    return res.status(500).json({
+        error: "Internal Error",
+        message: "This request is not available for this server",
+    });
 });
 app.get("/anime/:animeSlug", async (req, res) => {
     try {
