@@ -57,6 +57,7 @@ Beberapa source mungkin tidak support dengan beberapa fitur. Dikarenakan kurangn
 | <b>Kuronime</b>   | <ul><li>🟡 Mendapatkan Streaming URL mungkin agak lama karena link url di Enkripsi dan harus di Dekripsi dahulu dari playernya.</li><li>🔴 Source video selain local tidak di support</li></ul>        |
 | <b>Kuramanime</b> | <ul><li>🔴 Anime Terbaru tidak menampilkan yang terbaru melainkan campur aduk.</li><li>🔴 Anime Popular juga sama dengan yang diatas.</li><li>🔴 Beberapa page hanya memiliki maximum 8 page.</li></ul> |
 | <b>Nanime</b>     | <ul><li>🔴 Tidak support direct Streaming URL hanya bisa menggunakan embed.</li><li>🔴 Tidak ada Anime Popular.</li></ul>                                                                              |
+| <b>Otaku Desu</b> Cancelled     | <ul><li>🔴 Slug URL Details Anime berbeda dengan Slug URL Episode</li></ul>                                                                              |
 
 
 Jika kalian tau website anime subtitle anime yang bagus dan detail mohon kontak saya. Akan saya include di sini, Terima kasih!
