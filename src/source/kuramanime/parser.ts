@@ -18,7 +18,9 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
     );
     const $ = cheerio.load(base.data);
     if (!$("#animeList .product__item").html()) {
-      throw new Error("Page not found, you may request more than the maximum page");
+      throw new Error(
+        "Page not found, you may request more than the maximum page"
+      );
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
       .last()
@@ -58,7 +60,9 @@ export const search = async (
     );
     const $ = cheerio.load(base.data);
     if (!$("#animeList .product__item").html()) {
-      throw new Error("Anime not found,or you may request more than the maximum page");
+      throw new Error(
+        "Anime not found,or you may request more than the maximum page"
+      );
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
       .last()
@@ -92,11 +96,13 @@ export const popular = async (page: number = 1): Promise<ListAnime> => {
     );
     const $ = cheerio.load(base.data);
     if (!$("#animeList .product__item").html()) {
-      throw new Error("Page not found, you may request more than the maximum page");
+      throw new Error(
+        "Page not found, you may request more than the maximum page"
+      );
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
-    .last()
-    .html()!;
+      .last()
+      .html()!;
     $("#animeList .product__item").each((i, el) => {
       list.push({
         slug: $(el).find("a").attr("href")?.split("/")[5]!,
@@ -107,10 +113,12 @@ export const popular = async (page: number = 1): Promise<ListAnime> => {
           .replace("Ep", "")
           .split("/")[0]
           .trim(),
-        cover: $(el).attr("data-setbg")!,
+        cover: $(el).children("a").children("div").first().attr("data-setbg")!,
         url: $(el).find("a").attr("href")!,
       });
     });
+
+    console.log(list);
     return {
       page: ~~page,
       maxPage: maxPage,
@@ -155,16 +163,18 @@ export const genre = async (
     );
     const $ = cheerio.load(base.data);
     if (!$("#animeList .product__item").html()) {
-      throw new Error("Genre not found, or you may request more than the maximum page");
+      throw new Error(
+        "Genre not found, or you may request more than the maximum page"
+      );
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
-    .last()
-    .html()!;
+      .last()
+      .html()!;
     $("#animeList .product__item").each((i, el) => {
       list.push({
         slug: $(el).find("a").attr("href")?.split("/")[5]!,
         title: $(el).find(".product__item__text>h5>a").text(),
-        cover: $(el).attr("data-setbg")!,
+        cover: $(el).children("a").children("div").first().attr("data-setbg")!,
         url: $(el).find("a").attr("href")!,
       });
     });
@@ -210,16 +220,18 @@ export const season = async (
     );
     const $ = cheerio.load(base.data);
     if (!$("#animeList .product__item").html()) {
-      throw new Error("Season not found, or you may request more than the maximum page");
+      throw new Error(
+        "Season not found, or you may request more than the maximum page"
+      );
     }
     let maxPage = ~~$("#animeList .product__pagination a:not(:has(i))")
-    .last()
-    .html()!;
+      .last()
+      .html()!;
     $("#animeList .product__item").each((i, el) => {
       list.push({
         slug: $(el).find("a").attr("href")?.split("/")[5]!,
         title: $(el).find(".product__item__text>h5>a").text(),
-        cover: $(el).attr("data-setbg")!,
+        cover: $(el).children("a").children("div").first().attr("data-setbg")!,
         url: $(el).find("a").attr("href")!,
       });
     });
