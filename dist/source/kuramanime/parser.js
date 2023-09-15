@@ -97,10 +97,11 @@ const popular = async (page = 1) => {
                     .replace("Ep", "")
                     .split("/")[0]
                     .trim(),
-                cover: $(el).attr("data-setbg"),
+                cover: $(el).children("a").children("div").first().attr("data-setbg"),
                 url: $(el).find("a").attr("href"),
             });
         });
+        console.log(list);
         return {
             page: ~~page,
             maxPage: maxPage,
@@ -149,7 +150,7 @@ const genre = async (genre, page = 1) => {
             list.push({
                 slug: $(el).find("a").attr("href")?.split("/")[5],
                 title: $(el).find(".product__item__text>h5>a").text(),
-                cover: $(el).attr("data-setbg"),
+                cover: $(el).children("a").children("div").first().attr("data-setbg"),
                 url: $(el).find("a").attr("href"),
             });
         });
@@ -201,7 +202,7 @@ const season = async (season, page = 1) => {
             list.push({
                 slug: $(el).find("a").attr("href")?.split("/")[5],
                 title: $(el).find(".product__item__text>h5>a").text(),
-                cover: $(el).attr("data-setbg"),
+                cover: $(el).children("a").children("div").first().attr("data-setbg"),
                 url: $(el).find("a").attr("href"),
             });
         });

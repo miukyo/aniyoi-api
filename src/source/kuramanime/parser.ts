@@ -35,7 +35,7 @@ export const recentRelease = async (page: number = 1): Promise<ListAnime> => {
           .replace("Ep", "")
           .split("/")[0]
           .trim(),
-        cover: $(el).attr("data-setbg")!,
+        cover: $(el).children("a").children("div").first().attr("data-setbg")!,
         url: $(el).find("a").attr("href")!,
       });
     });
@@ -71,7 +71,7 @@ export const search = async (
       list.push({
         slug: $(el).find("a").attr("href")?.split("/")[5]!,
         title: $(el).find(".product__item__text>h5>a").text(),
-        cover: $(el).attr("data-setbg")!,
+        cover: $(el).children("a").children("div").first().attr("data-setbg")!,
         url: $(el).find("a").attr("href")!,
       });
     });
