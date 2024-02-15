@@ -7,9 +7,11 @@
 
   <p align="center">
     <b>RESTFUL API Streaming Anime Subtitle Indonesia</b><br />
-    <span>API ini masih dalam pembuatan jadi mungkin akan rawan error, Jika kalian tertarik untuk membantu bisa dm saya di discord <a href="https://discord.com/users/395407295867256833">miukyo#8967</a></span>
+    <span>API ini masih dalam pembuatan jadi mungkin akan rawan error, Jika kalian tertarik untuk membantu bisa dm saya di discord <a href="https://discord.com/users/395407295867256833">miukyo</a></span>
     <br />
 </p>
+
+# !!HIATUS!! GA TAU BAKAL LANJUT KAPAN, INFO LEBIH LANJUT BISA DM
 
 
 <h1> Table of Contents </h1>
